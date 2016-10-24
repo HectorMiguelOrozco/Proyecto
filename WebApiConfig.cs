@@ -28,8 +28,8 @@ namespace ProyectoAPI
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            var jsonpFormatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter);
-            config.Formatters.Insert(0, jsonpFormatter);
+            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "GET, POST");
+            config.EnableCors(cors);
         }
     }
 }

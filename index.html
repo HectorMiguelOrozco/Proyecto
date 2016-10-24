@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head class ="tabla">
     <script type="text/javascript" src="angular.min.js"></script>
@@ -15,7 +15,7 @@
                         $.ajax({
                             type: 'GET',
                             url: "http://localhost:51943/api/Personas",
-                            dataType: 'jsonp',
+                            dataType: 'json',
                             success: function (data) {
                                 ulPersonas.empty();
                                 $.each(data, function (index, val) {
