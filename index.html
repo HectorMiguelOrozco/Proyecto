@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head class ="tabla">
+    <script type="text/javascript" src="angular.min.js"></script>
+            <script type="text/javascript" src="app.js"></script>
+            <script type="text/javascript" src="controller.js"></script>
+            <link rel="stylesheet" type="text/css" href="app.css" />
+
+            <meta charset="utf-8" />
+            <script src="jquery-1.10.2.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var ulPersonas = $('#ulPersonas');
+                    $('#btn').click(function () {
+                        $.ajax({
+                            type: 'GET',
+                            url: "http://localhost:51943/api/Personas",
+                            dataType: 'jsonp',
+                            success: function (data) {
+                                ulPersonas.empty();
+                                $.each(data, function (index, val) {
+                                    var fullName = val.ID + '.- ' + val.Nombre + ', ' + val.Edad + ' años.';
+                                    ulPersonas.append('<li>' + fullName + '</li>');  
+                                });
+                            }
+                        });
+                    });
+                    $('#btnClear').click(function () {
+                        ulPersonas.empty();
+                    });
+                });
+            </script>
+
+    <title>Proyecto</title>
+  </head>
+  <body ng-app='ModalDemo' class ="tabla">
+    <div ng-controller='MyCtrl'>
+      <button ng-click='toggleModal()'>Agregar persona</button>
+      <modal-dialog show='modalShown' width='250px' height='200px'>
+        <input id ="name" placeholder="Nombre"><br><br>
+        <input id ="age" placeholder="Edad"><br><br>
+        <button ng-click="add()">Agregar</button><br><br>
+        <p id ="mensaje1"></p>
+      </modal-dialog>
+    </div>
+    <br><br>
+        <div>
+        <input id="btn" type="button" value="Obtener lista de personas" />
+        <input id="btnClear" type="button" value="Limpiar" />
+        <ul id="ulPersonas" />
+    </div>
+  </body>
+</html>
